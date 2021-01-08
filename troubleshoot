@@ -1,0 +1,5 @@
+echo >/dev/tcp/10.61.255.22/3128 &>/dev/null && echo "Open 3128" || echo "Close 3128"
+Open 3128
+
+echo >/dev/tcp/10.61.254.22/3128 &>/dev/null && echo "Open 3128" || echo "Close 3128"
+Open 3128
