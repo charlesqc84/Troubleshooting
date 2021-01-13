@@ -3,3 +3,73 @@ Open 3128
 
 echo >/dev/tcp/10.61.254.22/3128 &>/dev/null && echo "Open 3128" || echo "Close 3128"
 Open 3128
+
+
+oc get pods -n openshift-authentication
+NAME                              READY   STATUS    RESTARTS   AGE
+oauth-openshift-bc5bdc9b7-b4bqj   1/1     Running   0          92m
+oauth-openshift-bc5bdc9b7-lh552   1/1     Running   0          92m
+[root@LRTCCBASTI1469 ~]# oc get route -n openshift-authentication
+NAME              HOST/PORT                                                   PATH   SERVICES          PORT   TERMINATION            WILDCARD
+oauth-openshift   oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local          oauth-openshift   6443   passthrough/Redirect   None
+
+curl -kv https://oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local
+* About to connect() to oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local port 443 (#0)
+*   Trying 10.61.28.10...
+* Connected to oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local (10.61.28.10) port 443 (#0)
+* Initializing NSS with certpath: sql:/etc/pki/nssdb
+* NSS error -5938 (PR_END_OF_FILE_ERROR)
+* Encountered end of file
+* Closing connection 0
+curl: (35) Encountered end of file
+
+oc get pods -n openshift-ingress
+NAME                              READY   STATUS    RESTARTS   AGE
+router-default-7cb776b7d7-ppxdz   1/1     Running   0          92m
+router-default-7cb776b7d7-x8qm6   1/1     Running   0          92m
+
+curl -vik oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local:443:10.61.28.63 https://oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local
+* Could not resolve host: oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local:443:10.61.28.63; Unknown error
+* Closing connection 0
+curl: (6) Could not resolve host: oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local:443:10.61.28.63; Unknown error
+* About to connect() to oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local port 443 (#1)
+*   Trying 10.61.28.10...
+* Connected to oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local (10.61.28.10) port 443 (#1)
+* Initializing NSS with certpath: sql:/etc/pki/nssdb
+* NSS error -5938 (PR_END_OF_FILE_ERROR)
+* Encountered end of file
+* Closing connection 1
+curl: (35) Encountered end of file
+
+host oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local
+oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local has address 10.61.28.10
+[root@LRTCCBASTI1469 ~]# nslookup oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local
+Server:         10.64.28.20
+Address:        10.64.28.20#53
+
+Non-authoritative answer:
+Name:   oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local
+Address: 10.61.28.10
+
+dig oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local @10.64.28.20
+
+; <<>> DiG 9.11.4-P2-RedHat-9.11.4-9.P2.el7 <<>> oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local @10.64.28.20
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 40757
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local. IN A
+
+;; ANSWER SECTION:
+oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local. 21 IN A 10.61.28.10
+
+;; Query time: 2 msec
+;; SERVER: 10.64.28.20#53(10.64.28.20)
+;; WHEN: Thu Oct 29 15:02:20 EDT 2020
+;; MSG SIZE  rcvd: 102
