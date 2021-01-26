@@ -1,0 +1,10 @@
+1 . oc get namespace openshift-local-storage -o json > openshift-local-storage.json
+
+2. "spec": {
+        "finalizers": [
+        ]
+3. netstat -ntpul | grep 8001
+
+4. oc proxy &
+
+5. curl -k -H "Content-Type: application/json" -X PUT --data-binary @openshift-local-storage.json http://127.0.0.1:8001/api/v1/namespaces/openshift-local-storage/finalize
