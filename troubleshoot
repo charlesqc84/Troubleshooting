@@ -4,6 +4,13 @@ Open 3128
 echo >/dev/tcp/10.61.254.22/3128 &>/dev/null && echo "Open 3128" || echo "Close 3128"
 Open 3128
 
+### DELETE PV and PVC stuck terminating status
+
+kubectl patch pvc pvc_name -p '{"metadata":{"finalizers":null}}'
+kubectl patch pv pv_name -p '{"metadata":{"finalizers":null}}'
+kubectl patch pod pod_name -p '{"metadata":{"finalizers":null}}'
+
+#####################################################################
 
 oc get pods -n openshift-authentication
 NAME                              READY   STATUS    RESTARTS   AGE
