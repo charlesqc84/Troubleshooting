@@ -12,6 +12,8 @@ kubectl patch pod pod_name -p '{"metadata":{"finalizers":null}}'
 
 #####################################################################
 
+for I in $(oc get ns -o jsonpath='{range .items[*]} {.metadata.name}{"\n"} {end}');       do oc delete pods --all -n $I;       sleep 1; done
+
 #######################################################################
 https://github.com/openshift/okd/issues/141
 #######################################################################
