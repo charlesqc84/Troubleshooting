@@ -3,6 +3,11 @@ Open 3128
 
 echo >/dev/tcp/10.61.254.22/3128 &>/dev/null && echo "Open 3128" || echo "Close 3128"
 Open 3128
+####################################################################################
+
+oc adm release info -o json quay.io/openshift-release-dev/ocp-release:4.6.15-x86_64 | jq .metadata
+
+####################################################################################
 
 ### DELETE PV and PVC stuck terminating status #######################
 
