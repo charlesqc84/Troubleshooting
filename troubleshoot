@@ -7,6 +7,8 @@ Open 3128
 
 oc adm release info -o json quay.io/openshift-release-dev/ocp-release:4.6.15-x86_64 | jq .metadata
 
+https://docs.openshift.com/container-platform/4.3/networking/ingress-operator.html#nw-ingress-setting-internal-lb_configuring-ingress
+
 ####################################################################################
 
 ### DELETE PV and PVC stuck terminating status #######################
