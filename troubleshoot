@@ -93,3 +93,40 @@ oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local. 21 IN A 10.61.28.10
 ;; SERVER: 10.64.28.20#53(10.64.28.20)
 ;; WHEN: Thu Oct 29 15:02:20 EDT 2020
 ;; MSG SIZE  rcvd: 102
+
+#################################################################################################
+In ETCD Pod
+
+etcdctl member list -w table
+
++------------------+---------+----------------------------------+--------------------------+--------------------------+------------+
+|        ID        | STATUS  |               NAME               |        PEER ADDRS        |       CLIENT ADDRS       | IS LEARNER |
++------------------+---------+----------------------------------+--------------------------+--------------------------+------------+
+|  efbe3332d3d0037 | started | lotccmn1548.cloud.res.bngf.local | https://10.61.28.61:2380 | https://10.61.28.61:2379 |      false |
+| 2c300d8c021fa0a3 | started | lotccmn1546.cloud.res.bngf.local | https://10.61.28.62:2380 | https://10.61.28.62:2379 |      false |
+| 45573e89d6017684 | started | lotccmn1547.cloud.res.bngf.local | https://10.61.28.60:2380 | https://10.61.28.60:2379 |      false |
++------------------+---------+----------------------------------+--------------------------+--------------------------+------------+
+
+etcdctl endpoint status -w table
++--------------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
+|         ENDPOINT         |        ID        | VERSION | DB SIZE | IS LEADER | IS LEARNER | RAFT TERM | RAFT INDEX | RAFT APPLIED INDEX | ERRORS |
++--------------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
+| https://10.61.28.61:2379 |  efbe3332d3d0037 |   3.4.9 |  108 MB |      true |      false |        28 |    1816499 |            1816499 |        |
+| https://10.61.28.60:2379 | 45573e89d6017684 |   3.4.9 |  109 MB |     false |      false |        28 |    1816499 |            1816499 |        |
+| https://10.61.28.62:2379 | 2c300d8c021fa0a3 |   3.4.9 |  108 MB |     false |      false |        28 |    1816499 |            1816499 |        |
++--------------------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
+
+
+ etcdctl endpoint health
+https://10.61.28.62:2379 is healthy: successfully committed proposal: took = 7.792837ms
+https://10.61.28.61:2379 is healthy: successfully committed proposal: took = 10.569006ms
+https://10.61.28.60:2379 is healthy: successfully committed proposal: took = 14.877373ms
+
+
+etcdctl check perf
+ 60 / 60 Boooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo! 100.00% 1m0s
+PASS: Throughput is 150 writes/s
+PASS: Slowest request took 0.058598s
+PASS: Stddev is 0.001552s
+PASS
+###########################################################################################################
