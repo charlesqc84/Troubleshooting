@@ -1,6 +1,8 @@
 ###########################################################################################################
 oc get namespace test-ocp1 -o json > test-ocp1.json
 oc replace --raw "/api/v1/namespaces/logging/finalize" -f test-ocp1.json
+
+oc patch crd/applicationmanagers.agent.open-cluster-management.io -p '{"metadata":{"finalizers":[]}}' --type=merge
 ###########################################################################################################
 
 ############################################################################################################
