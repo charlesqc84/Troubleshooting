@@ -7,7 +7,6 @@ oc replace --raw "/api/v1/namespaces/logging/finalize" -f test-ocp1.json
 ACM-Redhat
 oc delete validatingwebhookconfiguration multiclusterhub-operator-validating-webhook
 
-```
 apiVersion: operator.open-cluster-management.io/v1
 kind: MultiClusterHub
 metadata:
@@ -15,4 +14,8 @@ metadata:
   namespace: open-cluster-management
 spec:
   imagePullSecret: rh-pullsecret
-```
+
+
+https://github.com/open-cluster-management/deploy/blob/master/hack/cleanup-managed-cluster.sh
+
+###########################################################################################################
