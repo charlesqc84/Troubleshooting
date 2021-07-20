@@ -5,6 +5,14 @@ echo >/dev/tcp/10.61.254.22/3128 &>/dev/null && echo "Open 3128" || echo "Close 
 Open 3128
 ####################################################################################
 
+############################ Delete force Pod #######################################
+
+oc delete pod $(oc get pod --no-headers | awk '{print $1}') --grace-period=0 --force
+
+oc patch pod apiserver-5bf7c95d75-pkvw2 -p '{"metadata":{"finalizers":null}}'
+
+#####################################################################################
+
 oc adm release info -o json quay.io/openshift-release-dev/ocp-release:4.6.15-x86_64 | jq .metadata
 
 https://docs.openshift.com/container-platform/4.3/networking/ingress-operator.html#nw-ingress-setting-internal-lb_configuring-ingress
