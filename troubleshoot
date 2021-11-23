@@ -110,9 +110,9 @@ etcdctl member list -w table
 +------------------+---------+----------------------------------+--------------------------+--------------------------+------------+
 |        ID        | STATUS  |               NAME               |        PEER ADDRS        |       CLIENT ADDRS       | IS LEARNER |
 +------------------+---------+----------------------------------+--------------------------+--------------------------+------------+
-|  efbe3332d3d0037 | started | lotccmn1548.cloud.res.bngf.local | https://10.61.28.61:2380 | https://10.61.28.61:2379 |      false |
-| 2c300d8c021fa0a3 | started | lotccmn1546.cloud.res.bngf.local | https://10.61.28.62:2380 | https://10.61.28.62:2379 |      false |
-| 45573e89d6017684 | started | lotccmn1547.cloud.res.bngf.local | https://10.61.28.60:2380 | https://10.61.28.60:2379 |      false |
+|  efbe3332d3d0037 | started | master1.example.com | https://10.61.28.61:2380 | https://10.61.28.61:2379 |      false |
+| 2c300d8c021fa0a3 | started | master2.example.com | https://10.61.28.62:2380 | https://10.61.28.62:2379 |      false |
+| 45573e89d6017684 | started | master3.example.com | https://10.61.28.60:2380 | https://10.61.28.60:2379 |      false |
 +------------------+---------+----------------------------------+--------------------------+--------------------------+------------+
 
 etcdctl endpoint status -w table
