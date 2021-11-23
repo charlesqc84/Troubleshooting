@@ -39,12 +39,12 @@ oauth-openshift-bc5bdc9b7-b4bqj   1/1     Running   0          92m
 oauth-openshift-bc5bdc9b7-lh552   1/1     Running   0          92m
 [root@LRTCCBASTI1469 ~]# oc get route -n openshift-authentication
 NAME              HOST/PORT                                                   PATH   SERVICES          PORT   TERMINATION            WILDCARD
-oauth-openshift   oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local          oauth-openshift   6443   passthrough/Redirect   None
+oauth-openshift   oauth-openshift.example.com          oauth-openshift   6443   passthrough/Redirect   None
 
-curl -kv https://oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local
-* About to connect() to oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local port 443 (#0)
+curl -kv https://oauth-openshift.example.com
+* About to connect() to oauth-openshift.example.com port 443 (#0)
 *   Trying 10.61.28.10...
-* Connected to oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local (10.61.28.10) port 443 (#0)
+* Connected to oauth-openshift.example.com (10.61.28.10) port 443 (#0)
 * Initializing NSS with certpath: sql:/etc/pki/nssdb
 * NSS error -5938 (PR_END_OF_FILE_ERROR)
 * Encountered end of file
@@ -56,32 +56,32 @@ NAME                              READY   STATUS    RESTARTS   AGE
 router-default-7cb776b7d7-ppxdz   1/1     Running   0          92m
 router-default-7cb776b7d7-x8qm6   1/1     Running   0          92m
 
-curl -vik oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local:443:10.61.28.63 https://oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local
-* Could not resolve host: oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local:443:10.61.28.63; Unknown error
+curl -vik oauth-openshift.example.com:443:10.61.28.63 https://oauth-openshift.example.com
+* Could not resolve host: oauth-openshift.example.com:443:10.61.28.63; Unknown error
 * Closing connection 0
-curl: (6) Could not resolve host: oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local:443:10.61.28.63; Unknown error
-* About to connect() to oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local port 443 (#1)
+curl: (6) Could not resolve host: oauth-openshift.example.com:443:10.61.28.63; Unknown error
+* About to connect() to oauth-openshift.example.com port 443 (#1)
 *   Trying 10.61.28.10...
-* Connected to oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local (10.61.28.10) port 443 (#1)
+* Connected to oauth-openshift.example.com (10.61.28.10) port 443 (#1)
 * Initializing NSS with certpath: sql:/etc/pki/nssdb
 * NSS error -5938 (PR_END_OF_FILE_ERROR)
 * Encountered end of file
 * Closing connection 1
 curl: (35) Encountered end of file
 
-host oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local
-oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local has address 10.61.28.10
-[root@LRTCCBASTI1469 ~]# nslookup oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local
+host oauth-openshift.example.com
+oauth-openshift.example.com has address 10.61.28.10
+[root@LRTCCBASTI1469 ~]# nslookup oauth-openshift.example.com
 Server:         10.64.28.20
 Address:        10.64.28.20#53
 
 Non-authoritative answer:
-Name:   oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local
+Name:   oauth-openshift.example.com
 Address: 10.61.28.10
 
-dig oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local @10.64.28.20
+dig oauth-openshift.example.com @10.64.28.20
 
-; <<>> DiG 9.11.4-P2-RedHat-9.11.4-9.P2.el7 <<>> oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local @10.64.28.20
+; <<>> DiG 9.11.4-P2-RedHat-9.11.4-9.P2.el7 <<>> oauth-openshift.example.com @10.64.28.20
 ;; global options: +cmd
 ;; Got answer:
 ;; WARNING: .local is reserved for Multicast DNS
@@ -92,10 +92,10 @@ dig oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local @10.64.28.20
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
 ;; QUESTION SECTION:
-;oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local. IN A
+;oauth-openshift.example.com IN A
 
 ;; ANSWER SECTION:
-oauth-openshift.apps.testocp.npr.ocp.cloud.res.bngf.local. 21 IN A 10.61.28.10
+oauth-openshift.example.com. 21 IN A 10.61.28.10
 
 ;; Query time: 2 msec
 ;; SERVER: 10.64.28.20#53(10.64.28.20)
